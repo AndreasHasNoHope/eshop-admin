@@ -3,7 +3,7 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment"
 import { Router, ActivatedRoute } from '@angular/router';
-import { ICategory } from 'src/app/interfaces/ICategory';
+import { ICategory } from 'src/app/interfaces/ICategories';
 
 @Component({
   selector: 'app-product-update',
