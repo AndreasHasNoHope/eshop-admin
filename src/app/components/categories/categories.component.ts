@@ -11,12 +11,30 @@ import {ICategory} from "../../interfaces/ICategories";
 export class CategoriesComponent implements OnInit {
   public categories: ICategory[] = [];
   public loading:boolean = false;
+
+  public swalDel = {
+    icon: "error",
+    title: "Are you sure?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    cancelButtonColor: "#fc03fc",
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  };
+  function(Del) {
+    if (Del) {
+      this.deleteCategories;
+    }
+  };
+
   constructor(
     private http: HttpClient
   ) { }
 
   ngOnInit() {
-    this.getCategories()
+    this.getCategories();
   }
   public getCategories() {
     this.loading = true;
@@ -25,6 +43,7 @@ export class CategoriesComponent implements OnInit {
       this.loading = false;
     })
   }
+
   public deleteCategories(id){
     this.http.delete(environment.apiUrl + "/categories/" + id)
       .subscribe(_ => {this.getCategories()});

@@ -32,21 +32,21 @@
           </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let p of products">
-              <td> <img [src]="p.photo" height="30" /></td>
-              <td>{{ p.title }}</td>
-              <td>{{ p.miniDesc }}</td>
-              <td>{{ p.price }}</td>
-              <td>{{ p.category }}</td>
-              <td class="text-nowrap">
-                <a [routerLink]="'/products/update/' + p._id" class="btn btn-sm btn-warning mr-1">
-                  <i class="fa fa-pencil"></i>
-                </a>
-                <button (click)="deleteProduct(p._id)" class="btn btn-sm btn-danger">
-                  <i class="fa fa-remove"></i>
-                </button>
-              </td>
-            </tr>
+          <tr *ngFor="let p of products">
+            <td><img [src]="p.photo" height="30"/></td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.miniDesc }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.category }}</td>
+            <td class="text-nowrap">
+              <a [routerLink]="'/products/update/' + p._id" class="btn btn-sm btn-warning mr-1">
+                <i class="fa fa-pencil"></i>
+              </a>
+              <button [swal]="swalDel" (confirm)="deleteProduct(p._id)" class="btn btn-sm btn-danger">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>

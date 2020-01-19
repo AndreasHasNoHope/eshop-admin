@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import {IUsers} from "../../interfaces/IUsers";
 import {HttpClient} from "@angular/common/http";
-import {IProduct} from "../../interfaces/IProduct";
-import {environment} from '../../../environments/environment';
+import {environment} from "../../../environments/environment";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styles: []
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class ProductsComponent implements OnInit {
-  public products: IProduct[] = [];
+export class UsersComponent implements OnInit {
+  public users: IUsers[] = [];
   public loading:boolean = false;
 
   public swalDel = {
@@ -25,30 +25,30 @@ export class ProductsComponent implements OnInit {
   };
   function(Del) {
     if (Del) {
-      this.deleteProduct;
+      this.deleteUsers;
     }
   };
+
 
   constructor(
     private http: HttpClient
   ) { }
 
   ngOnInit() {
-   this.getProducts();
+    this.getUsers();
   }
-
-  public getProducts() {
+  public getUsers() {
     this.loading = true;
-    this.http.get<IProduct[]>(environment.apiUrl + "/products").subscribe(response => {
-      this.products = response;
+    this.http.get<IUsers[]>(environment.apiUrl + "/users").subscribe(response => {
+      this.users = response;
       this.loading = false;
+
     });
   }
 
-  public deleteProduct(id){
-    this.http.delete(environment.apiUrl + "/products/" + id)
-      .subscribe(_ => {this.getProducts()});
+  public deleteUsers(id){
+    this.http.delete(environment.apiUrl + "/users/" + id)
+      .subscribe(_ => {this.getUsers()});
   }
 
 }
-
