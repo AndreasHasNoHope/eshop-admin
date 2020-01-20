@@ -18,7 +18,8 @@ import { CategoriesUpdateComponent } from './components/categories-update/catego
 import { UsersComponent } from './components/users/users.component';
 import { UsersCreateComponent } from './components/users-create/users-create.component';
 import { UsersUpdateComponent } from './components/users-update/users-update.component';
-import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { EditorModule } from "@tinymce/tinymce-angular";
 
 const routes = [
   {
@@ -102,7 +103,8 @@ const routes = [
     FormsModule, //ng-model so that it works
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    EditorModule
 
   ],
   providers: [],
