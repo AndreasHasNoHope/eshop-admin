@@ -20,64 +20,81 @@ import { UsersCreateComponent } from './components/users-create/users-create.com
 import { UsersUpdateComponent } from './components/users-update/users-update.component';
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { EditorModule } from "@tinymce/tinymce-angular";
+import { LoginComponent } from './components/login/login.component';
+import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 
 const routes = [
   {
     path: "",
-    component: DashboardComponent
-  },
-  {
-    path: "products",
+    component: AdminLayoutComponent,
     children: [
       {
-      path: "",
-      component: ProductsComponent
+        path: "",
+        component: DashboardComponent
       },
       {
-        path: "create",
-        component: ProductCreateComponent,
+        path: "products",
+        children: [
+          {
+            path: "",
+            component: ProductsComponent
+          },
+          {
+            path: "create",
+            component: ProductCreateComponent,
+          },
+          {
+            path: "update/:productId",
+            component: ProductUpdateComponent
+          }
+
+        ]
       },
       {
-        path: "update/:productId",
-        component: ProductUpdateComponent
+        path: "categories",
+        children: [
+          {
+            path: "",
+            component: CategoriesComponent
+          },
+          {
+            path: "create",
+            component: CategoriesCreateComponent
+          },
+          {
+            path: "update/:categoryId",
+            component: CategoriesUpdateComponent
+          }
+        ]
+      },
+      {
+        path: "users",
+        children: [
+          {
+            path: "",
+            component: UsersComponent
+          },
+          {
+            path: "create",
+            component: UsersCreateComponent
+          },
+          {
+            path: "update/:userId",
+            component: UsersUpdateComponent
+          }
+        ]
+      },
+      {
+        path: "login",
+        component: LoginComponent
       }
 
     ]
+
   },
-  {
-    path: "categories",
-    children: [
-      {
-        path: "",
-        component: CategoriesComponent
-      },
-      {
-        path: "create",
-        component: CategoriesCreateComponent
-      },
-      {
-        path: "update/:categoryId",
-        component: CategoriesUpdateComponent
-      }
-    ]
-  },
-  {
-    path: "users",
-    children: [
-      {
-        path: "",
-        component: UsersComponent
-      },
-      {
-        path: "create",
-        component: UsersCreateComponent
-      },
-      {
-        path: "update/:userId",
-        component: UsersUpdateComponent
-      }
-    ]
-  }
+
+
+
 
 ];
 
@@ -94,7 +111,9 @@ const routes = [
     CategoriesUpdateComponent,
     UsersComponent,
     UsersCreateComponent,
-    UsersUpdateComponent
+    UsersUpdateComponent,
+    LoginComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
