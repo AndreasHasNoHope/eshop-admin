@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IUsers} from "../../interfaces/IUsers";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
@@ -10,7 +10,7 @@ import {environment} from "../../../environments/environment";
 })
 export class UsersComponent implements OnInit {
   public users: IUsers[] = [];
-  public loading:boolean = false;
+  public loading: boolean = false;
 
   public swalDel = {
     icon: "error",
@@ -23,20 +23,23 @@ export class UsersComponent implements OnInit {
     closeOnConfirm: false,
     closeOnCancel: false
   };
+
   function(Del) {
     if (Del) {
       this.deleteUsers;
     }
-  };
+  }
 
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.getUsers();
   }
+
   public getUsers() {
     this.loading = true;
     this.http.get<IUsers[]>(environment.apiUrl + "/users").subscribe(response => {
@@ -46,9 +49,11 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  public deleteUsers(id){
+  public deleteUsers(id) {
     this.http.delete(environment.apiUrl + "/users/" + id)
-      .subscribe(_ => {this.getUsers()});
+      .subscribe(_ => {
+        this.getUsers();
+      });
   }
 
 }
