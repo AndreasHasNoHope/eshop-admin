@@ -1,30 +1,38 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-3">
     <div class="col-12">
-      <h1> Create New User</h1>
+      <h3>Update user</h3>
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-md-6">
-      <label for="users_firstName">First Name</label>
-      <input [(ngModel)]="user.firstName" type="text" class="form-control" id="users_firstName">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="first_name">FirstName</label>
+        <input [(ngModel)]="user.firstName" type="text"  class="form-control" id="first_name"/>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="users_lastName">Last Name</label>
-      <input [(ngModel)]="user.lastName" type="text" class="form-control" id="users_lastName">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="users_email">Email</label>
-      <input [(ngModel)]="user.email" type="email" class="form-control" id="users_email">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="users_password">Password</label>
-      <input [(ngModel)]="user.password" type="password" class="form-control" id="users_password">
+
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="last_name">LastName</label>
+        <input [(ngModel)]="user.lastName" type="text"  class="form-control" id="last_name"/>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-4 offset-4 mt-2 mb-5">
-      <button (click)="saveUser()" class="btn btn-success btn-block">Save</button>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="user_email">Email</label>
+        <input [(ngModel)]="user.email" type="text" class="form-control" id="user_email"/>
+      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-6">
+      <button (click)="saveUser()" type="submit" class="btn btn-outline-info">Save user</button>
+    </div>
+  </div>
+
 </div>

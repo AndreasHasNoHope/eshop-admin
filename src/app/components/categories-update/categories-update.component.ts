@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {IProduct} from "../../interfaces/IProduct";
-import {ICategory} from "../../interfaces/ICategories";
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
+import {ICategory} from '../../interfaces/ICategory';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-categories-update',
@@ -11,38 +10,31 @@ import {environment} from "../../../environments/environment";
   styleUrls: ['./categories-update.component.scss']
 })
 export class CategoriesUpdateComponent implements OnInit {
-  public category: Partial<IProduct> = {};
-  public categories: ICategory[] = [];
 
-  constructor(
-    private http:HttpClient,
-    private router:Router,
-    private route:ActivatedRoute
-  ) { }
+  public category: Partial<ICategory> = {};
+
+  constructor( private http: HttpClient,
+               private route: ActivatedRoute,
+               private router: Router
+               ) { }
 
   ngOnInit() {
-    this.getCategories();
     this.route.params.subscribe(params => {
       this.initCategory(params.categoryId);
     });
+
   }
-  public initCategory(id: string) {
-    this.http.get<ICategory>(environment.apiUrl + "/categories/" + id)
-      .subscribe(response => {
-        this.category = response;
-      });
+  public initCategory(id) {
+    this.http.get<ICategory>(environment.apiUrl + '/categories/' + id).subscribe(response => {
+      this.category = response;
+      console.log(this.category);
+    });
   }
-  public saveCategory() {
-    this.http.put(environment.apiUrl + "/categories/" + this.category._id, this.category)
-      .subscribe(response => {
-        this.router.navigate(["/categories"]);
-      });
+  public updateCategory() {
+    this.http.put(environment.apiUrl + '/categories/' + this.category._id, this.category).subscribe(_ => {
+      this.router.navigate(['/categories']);
+    });
   }
-  public getCategories() {
-    this.http.get<ICategory[]>(environment.apiUrl + "/categories")
-      .subscribe(response => {
-        this.categories = response;
-      });
-  }
+
 
 }

@@ -1,54 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {IProduct} from "../../interfaces/IProduct";
-import {environment} from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { IProduct } from 'src/app/interfaces/IProduct';
+import { environment } from 'src/environments/environment';
+import {IResponce} from '../../interfaces/IResponce';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styles: []
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  public products: IProduct[] = [];
-  public loading:boolean = false;
 
-  public swalDel = {
-    icon: "error",
-    title: "Are you sure?",
-    showCancelButton: true,
-    confirmButtonClass: "btn-danger",
-    confirmButtonText: "Delete",
-    cancelButtonColor: "#fc03fc",
-    cancelButtonText: "Cancel",
-    closeOnConfirm: false,
-    closeOnCancel: false
-  };
-  function(Del) {
-    if (Del) {
-      this.deleteProduct;
-    }
-  };
+  public loading: boolean = false;
+  public products: IProduct[] = [];
+
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private ls: LocalStorageService
   ) { }
 
   ngOnInit() {
-   this.getProducts();
+
+    this.getProducts();
+
   }
 
   public getProducts() {
     this.loading = true;
-    this.http.get<IProduct[]>(environment.apiUrl + "/products").subscribe(response => {
-      this.products = response;
+    this.http.get<IResponce>(environment.apiUrl + '/products')
+    .subscribe(response => {
+      this.products = response.products;
       this.loading = false;
     });
   }
 
-  public deleteProduct(id){
-    this.http.delete(environment.apiUrl + "/products/" + id)
-      .subscribe(_ => {this.getProducts()});
+  public deleteProduct(id) {
+    this.http.delete(environment.apiUrl + '/products/' + id)
+    .subscribe(_ => {
+      this.getProducts();
+    });
   }
 
 }
-

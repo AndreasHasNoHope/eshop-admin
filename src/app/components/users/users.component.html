@@ -1,50 +1,54 @@
 <div class="container">
-  <div class="row m-3">
+  <div class="row my-3">
     <div class="col-8">
-      <h1> Users List </h1>
+      <h3>Users List</h3>
     </div>
     <div class="col-4 text-right">
-      <button class="btn btn-info" (click)="getUsers()">
+      <button class="btn btn-outline-info mr-1" (click)="getUsers()">
         <i class="fa fa-refresh"></i>
       </button>
-      <a class="btn btn-primary" routerLink="/users/create">
-        <i class="fa fa-plus"></i> Create User
+      <a class="btn btn-outline-info" routerLink="/users/create">
+        <i class="fa fa-plus"></i> Add user
       </a>
     </div>
   </div>
-  <div class="row" *ngIf="loading">
-    <div class="col text-center">
-      <div class="spinner-border" role="status"></div>
-    </div>
-  </div>
+
   <div class="row">
     <div class="col-12">
-      <table class="table table-striped table-dark table-bordered">
-        <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let usr of users">
-          <td> {{usr.firstName}} </td>
-          <td> {{usr.lastName}} </td>
-          <td> {{usr.email}} </td>
-          <td> {{usr.role}} </td>
-          <td class="text-nowrap">
-            <a [routerLink]="'/users/update/' + usr._id" class="btn btn-sm btn-warning mr-1">
-              <i class="fa fa-pencil"></i>
-            </a>
-            <button [swal]="swalDel" (confirm)="deleteUsers(usr._id)" class="btn btn-sm btn-danger">
-              <i class="fa fa-remove"></i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered table-dark table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tools</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{user._id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td class="text-nowrap">
+              <a [routerLink]="'/users/update/' + user._id" class="btn btn-sm btn-outline-warning mr-1">
+                <i class="fa fa-pencil"></i>
+              </a>
+              <button (click)="deleteUser(user._id)" class="btn btn-sm btn-outline-danger">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
+

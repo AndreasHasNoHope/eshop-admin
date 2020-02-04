@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
-import { environment } from "src/environments/environment"
+import { environment } from 'src/environments/environment'
 import { Router, ActivatedRoute } from '@angular/router';
-import { ICategory } from 'src/app/interfaces/ICategories';
+import { ICategory } from 'src/app/interfaces/ICategory';
+import {IResponce} from '../../interfaces/IResponce';
 
 @Component({
   selector: 'app-product-update',
@@ -29,24 +30,24 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   public initProduct(id: string) {
-    this.http.get<IProduct>(environment.apiUrl + "/products/" + id)
-      .subscribe(response => {
-        this.product = response;
-      });
+    this.http.get<IResponce>(environment.apiUrl + '/products/' + id)
+    .subscribe(response => {
+      this.product = response.product;
+    });
   }
 
   public saveProduct() {
-    this.http.put(environment.apiUrl + "/products/" + this.product._id, this.product)
-      .subscribe(response => {
-        this.router.navigate(["/products"]);
-      });
+    this.http.put(environment.apiUrl + '/products/' + this.product._id, this.product)
+    .subscribe(response => {
+      this.router.navigate(['/products']).then();
+    });
   }
 
   public getCategories() {
-    this.http.get<ICategory[]>(environment.apiUrl + "/categories")
-      .subscribe(response => {
-        this.categories = response;
-      });
+    this.http.get<ICategory[]>(environment.apiUrl + '/categories')
+    .subscribe(response => {
+      this.categories = response;
+    });
   }
 
 }

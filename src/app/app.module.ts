@@ -7,94 +7,133 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { CategoriesCreateComponent } from './components/categories-create/categories-create.component';
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component';
+import { CategoriesCreateComponent } from './components/categories-create/categories-create.component';
+import { DepartmentsComponent } from './components/departments/departments.component';
+import { DepartmentsCreateComponent } from './components/departments-create/departments-create.component';
+import { DepartmentsUpdateComponent } from './components/departments-update/departments-update.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersCreateComponent } from './components/users-create/users-create.component';
 import { UsersUpdateComponent } from './components/users-update/users-update.component';
-import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
-import { EditorModule } from "@tinymce/tinymce-angular";
+import { PhotosComponent } from './components/photos/photos.component';
+import { PhotosCreateComponent } from './components/photos-create/photos-create.component';
+import { PhotosUpdateComponent } from './components/photos-update/photos-update.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 import { LoginComponent } from './components/login/login.component';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
+import {AuthGuard} from './guards/auth.guard';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+
 
 const routes = [
   {
-    path: "",
+    path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: "",
+        path: '',
         component: DashboardComponent
       },
+
       {
-        path: "products",
+        path: 'products',
         children: [
           {
-            path: "",
+            path: '',
             component: ProductsComponent
           },
           {
-            path: "create",
-            component: ProductCreateComponent,
+            path: 'create',
+            component: ProductCreateComponent
           },
           {
-            path: "update/:productId",
+            path: 'update/:productId',
             component: ProductUpdateComponent
           }
-
         ]
       },
       {
-        path: "categories",
+        path: 'categories',
         children: [
           {
-            path: "",
+            path: '',
             component: CategoriesComponent
           },
           {
-            path: "create",
+            path: 'create',
             component: CategoriesCreateComponent
           },
           {
-            path: "update/:categoryId",
+            path: 'update/:categoryId',
             component: CategoriesUpdateComponent
           }
         ]
       },
       {
-        path: "users",
+        path: 'departments',
         children: [
           {
-            path: "",
+            path: '',
+            component: DepartmentsComponent
+          },
+          {
+            path: 'create',
+            component: DepartmentsCreateComponent
+          },
+          {
+            path: 'update/:departmentId',
+            component: DepartmentsUpdateComponent
+          }
+        ]
+      },
+      {
+        path: 'users',
+        children: [
+          {
+            path: '',
             component: UsersComponent
           },
           {
-            path: "create",
+            path: 'create',
             component: UsersCreateComponent
           },
           {
-            path: "update/:userId",
+            path: 'update/:userId',
             component: UsersUpdateComponent
           }
         ]
       },
       {
-        path: "login",
-        component: LoginComponent
+        path: 'photos',
+        children: [
+          {
+            path: '',
+            component: PhotosComponent
+          },
+          {
+            path: 'create',
+            component: PhotosCreateComponent
+          },
+          {
+            path: 'update/:photoId',
+            component: PhotosUpdateComponent
+          }
+        ]
       }
-
     ]
-
   },
-
-
-
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 
 ];
 
@@ -107,26 +146,37 @@ const routes = [
     ProductCreateComponent,
     ProductUpdateComponent,
     CategoriesComponent,
-    CategoriesCreateComponent,
     CategoriesUpdateComponent,
+    CategoriesCreateComponent,
+    DepartmentsComponent,
+    DepartmentsCreateComponent,
+    DepartmentsUpdateComponent,
     UsersComponent,
     UsersCreateComponent,
     UsersUpdateComponent,
+    PhotosComponent,
+    PhotosCreateComponent,
+    PhotosUpdateComponent,
     LoginComponent,
     AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
     HttpClientModule,
-    CommonModule, //of ngif to works
-    FormsModule, //ng-model so that it works
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
-    SweetAlert2Module.forRoot(),
-    EditorModule
-
+    EditorModule,
+    NgxWebstorageModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
-import { environment } from "src/environments/environment"
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { ICategory } from 'src/app/interfaces/ICategories';
+import { ICategory } from 'src/app/interfaces/ICategory';
 
 @Component({
   selector: 'app-product-create',
@@ -25,17 +25,17 @@ export class ProductCreateComponent implements OnInit {
   }
 
   public saveProduct() {
-    this.http.post(environment.apiUrl + "/products", this.product)
-      .subscribe(response => {
-        this.router.navigate(["/products"]);
-      });
+    this.http.post(environment.apiUrl + '/products', this.product)
+    .subscribe(response => {
+      this.router.navigate(['/products']);
+    });
   }
 
   public getCategories() {
-    this.http.get<ICategory[]>(environment.apiUrl + "/categories")
-      .subscribe(response => {
-        this.categories = response;
-      });
+    this.http.get<ICategory[]>(environment.apiUrl + '/categories')
+    .subscribe(response => {
+      this.categories = response;
+    });
   }
 
 }
