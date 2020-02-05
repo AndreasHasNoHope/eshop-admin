@@ -15,15 +15,9 @@ import { ProductUpdateComponent } from './components/product-update/product-upda
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component';
 import { CategoriesCreateComponent } from './components/categories-create/categories-create.component';
-import { DepartmentsComponent } from './components/departments/departments.component';
-import { DepartmentsCreateComponent } from './components/departments-create/departments-create.component';
-import { DepartmentsUpdateComponent } from './components/departments-update/departments-update.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersCreateComponent } from './components/users-create/users-create.component';
 import { UsersUpdateComponent } from './components/users-update/users-update.component';
-import { PhotosComponent } from './components/photos/photos.component';
-import { PhotosCreateComponent } from './components/photos-create/photos-create.component';
-import { PhotosUpdateComponent } from './components/photos-update/photos-update.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { LoginComponent } from './components/login/login.component';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
@@ -78,23 +72,6 @@ const routes = [
         ]
       },
       {
-        path: 'departments',
-        children: [
-          {
-            path: '',
-            component: DepartmentsComponent
-          },
-          {
-            path: 'create',
-            component: DepartmentsCreateComponent
-          },
-          {
-            path: 'update/:departmentId',
-            component: DepartmentsUpdateComponent
-          }
-        ]
-      },
-      {
         path: 'users',
         children: [
           {
@@ -111,23 +88,6 @@ const routes = [
           }
         ]
       },
-      {
-        path: 'photos',
-        children: [
-          {
-            path: '',
-            component: PhotosComponent
-          },
-          {
-            path: 'create',
-            component: PhotosCreateComponent
-          },
-          {
-            path: 'update/:photoId',
-            component: PhotosUpdateComponent
-          }
-        ]
-      }
     ]
   },
   {
@@ -148,15 +108,9 @@ const routes = [
     CategoriesComponent,
     CategoriesUpdateComponent,
     CategoriesCreateComponent,
-    DepartmentsComponent,
-    DepartmentsCreateComponent,
-    DepartmentsUpdateComponent,
     UsersComponent,
     UsersCreateComponent,
     UsersUpdateComponent,
-    PhotosComponent,
-    PhotosCreateComponent,
-    PhotosUpdateComponent,
     LoginComponent,
     AdminLayoutComponent
   ],

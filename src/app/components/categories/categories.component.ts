@@ -9,6 +9,7 @@ import {ICategory} from '../../interfaces/ICategory';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
+  public loading: boolean = false;
   public  categories: ICategory [] = [];
   constructor(private http: HttpClient) { }
 
@@ -16,8 +17,11 @@ export class CategoriesComponent implements OnInit {
     this.getCategories();
   }
   public getCategories() {
+    this.loading = true;
     this.http.get<ICategory[]>(environment.apiUrl + '/categories').subscribe( response => {
       this.categories = response;
+      this.loading = false;
+
     });
   }
 

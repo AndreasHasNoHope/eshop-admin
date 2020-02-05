@@ -9,6 +9,7 @@ import {IUser} from '../../interfaces/IUser';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+    public loading: boolean = false;
     public users: IUser[] = [];
 
   constructor(private http: HttpClient) { }
@@ -18,8 +19,10 @@ export class UsersComponent implements OnInit {
   }
 
   public getUsers() {
+    this.loading = true;
     this.http.get<IUser[]>(environment.apiUrl + '/users').subscribe(res => {
       this.users = res;
+      this.loading = false;
     });
   }
   public deleteUser(id) {
