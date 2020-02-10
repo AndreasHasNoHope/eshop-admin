@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-  this.errorMessage = '';
-  this.validationErrors = [];
-  this.http.post<IResponce>(environment.apiUrl + '/auth/login', this.loginData).subscribe( response => {
+    this.errorMessage = '';
+    this.validationErrors = [];
+    this.http.post<IResponce>(environment.apiUrl + '/auth/login', this.loginData).subscribe( response => {
       console.log(response);
       if (response.success) {
-          this.ls.store('token', response.token);
-          this.ls.store('user', response.user);
-          this.router.navigate(['/']);
+        this.ls.store('token', response.token);
+        this.ls.store('user', response.user);
+        this.router.navigate(['/']);
       } else {
         this.errorMessage = response.message || '';
         this.validationErrors = response.errors || [];

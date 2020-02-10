@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<p>Hello Word!</p>
+<button class="btn badge-primary" (click)="getStats()" >
+  Refresh
+</button>
+<chart
+  [type]="type"
+  [data]="data"
+  [options]="options">
+</chart>

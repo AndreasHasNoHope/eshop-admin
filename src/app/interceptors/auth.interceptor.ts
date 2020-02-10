@@ -15,9 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
 
   ) {
-    const token = 'Bearer ' + this.ls.retrieve('token');
+    const token = "Bearer " + this.ls.retrieve('token');
     const duplicate = req.clone({
-      headers: req.headers.set('authorization', token)
+      headers: req.headers.set("authorization", token)
     });
 
     return next.handle(duplicate);
