@@ -24,11 +24,9 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-<<<<<<< HEAD
-import {ChartModule} from "angular2-chartjs";
-=======
+
 import {ChartModule} from 'angular2-chartjs';
->>>>>>> 84c295d43ba78b28e167b61737c11462b17a80e1
+
 
 
 const routes = [
