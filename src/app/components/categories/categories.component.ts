@@ -11,6 +11,22 @@ import {ICategory} from '../../interfaces/ICategory';
 export class CategoriesComponent implements OnInit {
   public loading: boolean = false;
   public  categories: ICategory [] = [];
+  public swalDel = {
+    icon: "error",
+    title: "Are you sure?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Delete",
+    cancelButtonColor: "#fc03fc",
+    cancelButtonText: "Cancel",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  };
+  function(Del) {
+    if (Del) {
+      this.deleteCategory;
+    }
+  }
   constructor(private http: HttpClient) { }
 
   ngOnInit() {

@@ -34,6 +34,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let p of products; let i = index">
+
             <td>{{i + 1}}</td>
             <td><img [src]="p.photo" height="30" /></td>
             <td>{{ p.title }}</td>
@@ -44,7 +45,7 @@
               <a [routerLink]="'/products/update/' + p._id" class="btn btn-sm btn-outline-warning mr-1">
                 <i class="fa fa-pencil"></i>
               </a>
-              <button (click)="deleteProduct(p._id)" class="btn btn-sm btn-outline-danger">
+              <button [swal]="swalDel" (confirm)="deleteProduct(p._id)" class="btn btn-sm btn-outline-danger">
                 <i class="fa fa-remove"></i>
               </button>
             </td>

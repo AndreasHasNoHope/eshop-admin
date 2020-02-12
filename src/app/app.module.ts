@@ -24,8 +24,8 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-
 import {ChartModule} from 'angular2-chartjs';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
 
@@ -126,7 +126,8 @@ const routes = [
     NgbModule.forRoot(),
     EditorModule,
     NgxWebstorageModule.forRoot(),
-    ChartModule
+    ChartModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     {

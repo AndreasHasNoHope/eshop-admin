@@ -11,6 +11,22 @@ import {IUser} from '../../interfaces/IUser';
 export class UsersComponent implements OnInit {
     public loading: boolean = false;
     public users: IUser[] = [];
+  public swalDel = {
+    icon: "error",
+    title: "Are you sure?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Delete",
+    cancelButtonColor: "#fc03fc",
+    cancelButtonText: "Cancel",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  };
+  function(Del) {
+    if (Del) {
+      this.deleteUser;
+    }
+  }
 
   constructor(private http: HttpClient) { }
 

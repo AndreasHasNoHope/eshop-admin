@@ -41,7 +41,7 @@
               <a [routerLink]="'/categories/update/' + cat._id" class="btn btn-sm btn-outline-warning mr-1">
                 <i class="fa fa-pencil"></i>
               </a>
-              <button (click)="deleteCategory(cat._id)" class="btn btn-sm btn-outline-danger">
+              <button [swal]="swalDel" (confirm)="deleteCategory(cat._id)" class="btn btn-sm btn-outline-danger">
                 <i class="fa fa-remove"></i>
               </button>
             </td>

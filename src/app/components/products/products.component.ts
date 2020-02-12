@@ -14,11 +14,24 @@ export class ProductsComponent implements OnInit {
 
   public loading: boolean = false;
   public products: IProduct[] = [];
-
-
+  public swalDel = {
+    icon: "error",
+    title: "Are you sure?",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Delete",
+    cancelButtonColor: "#fc03fc",
+    cancelButtonText: "Cancel",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  };
+  function(Del) {
+    if (Del) {
+      this.deleteProduct;
+    }
+  }
   constructor(
     private http: HttpClient,
-    private ls: LocalStorageService
   ) { }
 
   ngOnInit() {
